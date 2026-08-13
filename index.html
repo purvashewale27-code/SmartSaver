@@ -872,8 +872,11 @@
     }
 
     .calc-btn-container {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
       margin-bottom: 24px;
+      flex-wrap: wrap;
     }
 
     .btn-primary {
@@ -897,6 +900,28 @@
       background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
       transform: translateY(-2px) scale(1.01);
       box-shadow: 0 12px 28px rgba(101, 163, 13, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-muted);
+      border: 2px solid var(--border-color);
+      padding: 14px 32px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: inherit;
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-elevated);
+      color: var(--text-main);
+      border-color: #d4d4d4;
     }
 
     /* Calculator Results Section */
@@ -1588,11 +1613,15 @@
 
             </div>
 
-            <!-- ACTION BUTTON -->
+            <!-- ACTION BUTTONS -->
             <div class="calc-btn-container">
               <button type="button" class="btn-primary" onclick="calculateReturns()">
                 <span>Calculate My Returns</span>
                 <span>→</span>
+              </button>
+              <button type="button" class="btn-outline" onclick="resetCalculator()">
+                <span>Reset</span>
+                <span>↺</span>
               </button>
             </div>
 
@@ -1970,6 +1999,22 @@
       // Show container & scroll smoothly to results
       resultsContainer.style.display = 'block';
       resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Reset Calculator to Initial State
+    function resetCalculator() {
+      // 1. Reset amount to default 1000
+      setAmount(1000);
+      
+      // 2. Reset time horizon to default (short)
+      horizonSelect.value = 'short';
+      
+      // 3. Hide the results section completely
+      resultsContainer.style.display = 'none';
+      resultsGrid.innerHTML = '';
+      
+      // 4. Smooth scroll back to the calculator input area
+      document.getElementById('calculator').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   </script>
 </body>
