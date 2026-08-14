@@ -1,2022 +1,684 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Saver — A Beginner's Guide to Saving & Investing</title>
-  <meta name="description"
-    content="Learn the fundamentals of saving money and explore 7 beginner-friendly investment options with our interactive returns calculator.">
-
-  <!-- Google Fonts — Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-
-  <style>
-    /* ==========================================================================
-       DESIGN SYSTEM & TOKENS — PREMIUM LIGHT DASHBOARD
-       ========================================================================== */
-    :root {
-      /* Core Accent Colors */
-      --primary: #65a30d;
-      /* Lime 700 — rich green for light bg readability */
-      --primary-dark: #4d7c0f;
-      /* Lime 800 */
-      --primary-vivid: #84cc16;
-      /* Lime 500 — for badges/fills */
-      --primary-bright: #a3e635;
-      /* Lime 400 — for gradients */
-
-      --orange: #ea580c;
-      /* Orange 600 */
-      --orange-vivid: #f97316;
-      /* Orange 500 */
-      --teal: #0d9488;
-      /* Teal 600 */
-      --blue: #2563eb;
-      /* Blue 600 */
-      --amber: #d97706;
-      /* Amber 600 */
-      --purple: #7c3aed;
-      /* Violet 600 */
-      --white: #ffffff;
-
-      /* Outer page background */
-      --bg-outer: #e8efdc;
-
-      /* Light Dashboard Surfaces */
-      --bg-app: #ffffff;
-      --bg-card: #f8faf5;
-      --bg-card-hover: #f1f5eb;
-      --bg-elevated: #f4f6f0;
-      --bg-input: #f8faf5;
-      --bg-section-alt: #f2f5ec;
-
-      /* Text */
-      --text-main: #1a1a1a;
-      --text-body: #4a4a4a;
-      --text-muted: #7a7a7a;
-
-      /* Borders */
-      --border-color: #e2e5da;
-      --border-hover: rgba(101, 163, 13, 0.45);
-
-      /* Tinted accent backgrounds */
-      --primary-light: #f0f9e8;
-      --orange-light: #fff4ed;
-      --teal-light: #eefbf9;
-      --blue-light: #eef4ff;
-      --amber-light: #fef9ee;
-      --purple-light: #f3eeff;
-
-      /* Shadows */
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
-      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-      --shadow-lg: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
-      --shadow-glow: 0 0 30px -5px rgba(101, 163, 13, 0.12);
-
-      /* Radii */
-      --radius-sm: 14px;
-      --radius-md: 20px;
-      --radius-lg: 28px;
-      --radius-xl: 36px;
-      --radius-full: 9999px;
-
-      --transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
-
-    /* ==========================================================================
-       RESET & BASE STYLES
-       ========================================================================== */
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background-color: var(--bg-outer);
-      color: var(--text-body);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    /* Dashboard Shell — white rounded panel on sage bg */
-    .dashboard-shell {
-      width: 100%;
-      max-width: 1440px;
-      background: var(--bg-app);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.03);
-      position: relative;
-    }
-
-    /* Custom Premium Scrollbar */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #fafafa;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #d4d4d4;
-      border-radius: var(--radius-full);
-      border: 3px solid #fafafa;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--primary);
-    }
-
-    .container {
-      width: min(1200px, 92%);
-      margin: 0 auto;
-    }
-
-    /* Backdrop Decorative Blobs */
-    .decor-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      z-index: 0;
-      opacity: 0.25;
-      pointer-events: none;
-      animation: float 12s infinite alternate ease-in-out;
-    }
-
-    .blob-1 {
-      width: 350px;
-      height: 350px;
-      background: linear-gradient(135deg, var(--primary-bright), #5eead4);
-      top: 10%;
-      left: -100px;
-    }
-
-    .blob-2 {
-      width: 400px;
-      height: 400px;
-      background: linear-gradient(135deg, var(--orange-vivid), var(--primary-bright));
-      bottom: 15%;
-      right: -150px;
-      animation-delay: -4s;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0) scale(1);
-      }
-
-      100% {
-        transform: translateY(30px) scale(1.1);
-      }
-    }
-
-    /* ==========================================================================
-       HEADER & NAVIGATION — Pill-shaped light nav
-       ========================================================================== */
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-color);
-      transition: var(--transition);
-    }
-
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 70px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--text-main);
-      letter-spacing: -0.03em;
-      text-decoration: none;
-    }
-
-    .logo-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary-vivid), var(--orange-vivid));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--white);
-      font-size: 1.25rem;
-      font-weight: 800;
-      box-shadow: 0 4px 15px rgba(101, 163, 13, 0.25);
-    }
-
-    .logo span {
-      color: var(--primary);
-    }
-
-    /* Pill-shaped nav links */
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-weight: 600;
-      font-size: 0.85rem;
-      color: var(--text-body);
-      transition: var(--transition);
-      padding: 8px 18px;
-      border-radius: var(--radius-full);
-      border: 1px solid var(--border-color);
-      background: var(--bg-card);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary-dark);
-      border-color: var(--primary);
-      background: var(--primary-light);
-    }
-
-    .nav-right-controls {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .btn-nav {
-      background: var(--primary);
-      color: var(--white);
-      padding: 10px 22px;
-      border-radius: var(--radius-full);
-      font-weight: 700;
-      font-size: 0.88rem;
-      transition: var(--transition);
-      box-shadow: 0 4px 14px rgba(101, 163, 13, 0.25);
-      text-decoration: none;
-    }
-
-    .btn-nav:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(101, 163, 13, 0.35);
-    }
-
-    /* ==========================================================================
-       HERO SECTION
-       ========================================================================== */
-    .hero {
-      min-height: calc(100vh - 70px);
-      padding: 60px 0 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      scroll-margin-top: 70px;
-      box-sizing: border-box;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 40px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .badge-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      background: var(--primary-light);
-      border: 1px solid rgba(101, 163, 13, 0.15);
-      border-radius: var(--radius-full);
-      color: var(--primary);
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 16px;
-    }
-
-    .badge-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--primary-vivid);
-      box-shadow: 0 0 8px rgba(132, 204, 22, 0.5);
-    }
-
-    .hero-title {
-      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-      line-height: 1.12;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      color: var(--text-main);
-      margin-bottom: 16px;
-    }
-
-    .hero-title .gradient-text {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--orange) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-description {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 24px;
-    }
-
-    /* What is Saving Card */
-    .saving-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 28px;
-      box-shadow: var(--shadow-lg);
-      position: relative;
-      overflow: hidden;
-      transition: var(--transition);
-    }
-
-    .saving-card:hover {
-      box-shadow: var(--shadow-glow), var(--shadow-lg);
-      transform: translateY(-4px);
-      border-color: var(--border-hover);
-    }
-
-    .saving-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary-vivid), var(--orange-vivid), var(--teal));
-    }
-
-    .saving-card-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-
-    .saving-card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      background: var(--primary-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-    }
-
-    .saving-card h3 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-
-    .saving-card p {
-      color: var(--text-body);
-      font-size: 0.95rem;
-      margin-bottom: 20px;
-      line-height: 1.6;
-    }
-
-    .saving-bullets {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .bullet-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 0.9rem;
-      color: var(--text-body);
-    }
-
-    .bullet-check {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--primary-vivid);
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 800;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border-color);
-    }
-
-    .stat-box h4 {
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: var(--primary);
-      line-height: 1.1;
-    }
-
-    .stat-box p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-weight: 600;
-      margin-top: 4px;
-    }
-
-    /* ==========================================================================
-       SECTION HEADERS
-       ========================================================================== */
-    .section {
-      min-height: calc(100vh - 70px);
-      padding: 60px 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      scroll-margin-top: 70px;
-      box-sizing: border-box;
-    }
-
-    .section-alt {
-      background: var(--bg-section-alt);
-    }
-
-    .section-header {
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto 40px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      font-size: 0.8rem;
-      font-weight: 800;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      color: var(--text-main);
-      margin-bottom: 12px;
-      line-height: 1.15;
-    }
-
-    .section-subtitle {
-      font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* Filter Tabs — Light pills */
-    .options-tabs-container {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
-    }
-
-    .tab-btn {
-      background: var(--white);
-      border: 1px solid var(--border-color);
-      padding: 8px 18px;
-      border-radius: var(--radius-full);
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: var(--transition);
-      font-family: inherit;
-    }
-
-    .tab-btn:hover {
-      border-color: var(--primary);
-      color: var(--primary-dark);
-      background: var(--primary-light);
-    }
-
-    .tab-btn.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: var(--white);
-      box-shadow: 0 4px 14px rgba(101, 163, 13, 0.25);
-    }
-
-    /* ==========================================================================
-       SECTION 2: OPTIONS CARDS (7 INSTRUMENTS)
-       ========================================================================== */
-    .options-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-    }
-
-    .option-card {
-      background: var(--white);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      padding: 18px;
-      transition: var(--transition);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .option-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--border-hover);
-      background: var(--bg-card-hover);
-    }
-
-    .option-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-
-    .option-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      transition: var(--transition);
-    }
-
-    .option-card:hover .option-icon {
-      transform: scale(1.1) rotate(-4deg);
-    }
-
-    .bg-green {
-      background: var(--primary-light);
-      color: var(--primary);
-    }
-
-    .bg-teal {
-      background: var(--teal-light);
-      color: var(--teal);
-    }
-
-    .bg-blue {
-      background: var(--blue-light);
-      color: var(--blue);
-    }
-
-    .bg-amber {
-      background: var(--amber-light);
-      color: var(--amber);
-    }
-
-    .tag-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: var(--radius-full);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .tag-green {
-      background: var(--primary-light);
-      color: var(--primary);
-    }
-
-    .tag-teal {
-      background: var(--teal-light);
-      color: var(--teal);
-    }
-
-    .tag-blue {
-      background: var(--blue-light);
-      color: var(--blue);
-    }
-
-    .tag-amber {
-      background: var(--amber-light);
-      color: var(--amber);
-    }
-
-    .tag-purple {
-      background: var(--purple-light);
-      color: var(--purple);
-    }
-
-    .option-title {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--text-main);
-      margin-bottom: 6px;
-    }
-
-    .option-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-      margin-bottom: 14px;
-      flex-grow: 1;
-    }
-
-    .option-footer {
-      padding-top: 10px;
-      border-top: 1px dashed var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .option-lock {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      color: var(--text-body);
-    }
-
-    /* Highlight Card for Featured / Growth Options */
-    .option-card.featured {
-      border: 2px solid var(--primary-vivid);
-    }
-
-    .option-card.featured::after {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: var(--radius-md);
-      border: 2px solid transparent;
-      background: linear-gradient(135deg, var(--primary-vivid), var(--orange-vivid)) border-box;
-      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    .featured-badge {
-      position: absolute;
-      top: -10px;
-      right: 20px;
-      background: linear-gradient(135deg, var(--primary-vivid), var(--orange-vivid));
-      color: var(--white);
-      font-size: 0.65rem;
-      font-weight: 800;
-      padding: 3px 10px;
-      border-radius: var(--radius-full);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      box-shadow: 0 4px 12px rgba(101, 163, 13, 0.3);
-      z-index: 2;
-    }
-
-    /* ==========================================================================
-       SECTION 3: INTERACTIVE CALCULATOR
-       ========================================================================== */
-    .calc-wrapper {
-      background: var(--white);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 36px;
-      box-shadow: var(--shadow-lg);
-      position: relative;
-    }
-
-    .calc-controls {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 32px;
-      margin-bottom: 24px;
-    }
-
-    .input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .input-label-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .input-group label {
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .preset-pills {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 6px;
-    }
-
-    .preset-btn {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-full);
-      padding: 6px 12px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-body);
-      cursor: pointer;
-      transition: var(--transition);
-      font-family: inherit;
-    }
-
-    .preset-btn:hover,
-    .preset-btn.active {
-      background: var(--primary-light);
-      border-color: var(--primary);
-      color: var(--primary);
-    }
-
-    .currency-input-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
-    .currency-symbol {
-      position: absolute;
-      left: 16px;
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--text-muted);
-    }
-
-    .calc-input {
-      width: 100%;
-      padding: 14px 16px 14px 38px;
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--text-main);
-      border: 2px solid var(--border-color);
-      border-radius: var(--radius-md);
-      outline: none;
-      background: var(--bg-input);
-      transition: var(--transition);
-      font-family: inherit;
-    }
-
-    .calc-input:focus {
-      border-color: var(--primary);
-      background: var(--white);
-      box-shadow: 0 0 0 4px rgba(101, 163, 13, 0.1);
-    }
-
-    /* Range Slider */
-    .range-slider {
-      width: 100%;
-      margin-top: 10px;
-      accent-color: var(--primary-vivid);
-      cursor: pointer;
-    }
-
-    .select-wrapper {
-      position: relative;
-    }
-
-    .calc-select {
-      width: 100%;
-      padding: 14px 16px;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-main);
-      border: 2px solid var(--border-color);
-      border-radius: var(--radius-md);
-      outline: none;
-      background: var(--bg-input);
-      cursor: pointer;
-      transition: var(--transition);
-      appearance: none;
-      font-family: inherit;
-    }
-
-    .calc-select:focus {
-      border-color: var(--primary);
-      background: var(--white);
-      box-shadow: 0 0 0 4px rgba(101, 163, 13, 0.1);
-    }
-
-    .select-arrow {
-      position: absolute;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      pointer-events: none;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .calc-btn-container {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-vivid) 100%);
-      color: var(--white);
-      border: none;
-      padding: 16px 40px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      border-radius: var(--radius-full);
-      cursor: pointer;
-      transition: var(--transition);
-      box-shadow: 0 8px 25px rgba(101, 163, 13, 0.25);
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-family: inherit;
-    }
-
-    .btn-primary:hover {
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-      transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 12px 28px rgba(101, 163, 13, 0.35);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text-muted);
-      border: 2px solid var(--border-color);
-      padding: 14px 32px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      border-radius: var(--radius-full);
-      cursor: pointer;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: inherit;
-    }
-
-    .btn-outline:hover {
-      background: var(--bg-elevated);
-      color: var(--text-main);
-      border-color: #d4d4d4;
-    }
-
-    /* Calculator Results Section */
-    .results-container {
-      display: none;
-      animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .results-banner {
-      background: var(--primary-light);
-      border: 1px solid rgba(101, 163, 13, 0.15);
-      border-radius: var(--radius-md);
-      padding: 24px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 36px;
-    }
-
-    .results-banner-text {
-      font-size: 1.1rem;
-      color: var(--text-body);
-    }
-
-    .results-banner-text strong {
-      color: var(--primary-dark);
-      font-weight: 800;
-    }
-
-    .horizon-badge {
-      background: var(--white);
-      padding: 8px 20px;
-      border-radius: var(--radius-full);
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--primary);
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--border-color);
-    }
-
-    .results-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-bottom: 40px;
-    }
-
-    .result-card {
-      background: var(--bg-card);
-      border: 2px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 36px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      transition: var(--transition);
-    }
-
-    .result-card.highlight {
-      border-color: var(--primary-vivid);
-      background: var(--white);
-      box-shadow: var(--shadow-glow), var(--shadow-md);
-    }
-
-    .result-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 20px;
-    }
-
-    .result-instrument-name {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-
-    .result-rate {
-      display: inline-block;
-      font-size: 0.88rem;
-      font-weight: 700;
-      background: var(--primary-light);
-      color: var(--primary);
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
-    }
-
-    .result-amount-label {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .result-amount-value {
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
-      font-weight: 800;
-      color: var(--primary);
-      margin: 6px 0 16px;
-      letter-spacing: -0.03em;
-    }
-
-    .result-profit-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--primary);
-      background: var(--primary-light);
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
-      width: fit-content;
-      margin-bottom: 24px;
-    }
-
-    /* Bar graph preview */
-    .progress-bar-container {
-      margin-bottom: 24px;
-    }
-
-    .progress-bar-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .progress-bar-track {
-      height: 12px;
-      background: var(--bg-elevated);
-      border-radius: var(--radius-full);
-      overflow: hidden;
-      display: flex;
-    }
-
-    .progress-bar-fill-principal {
-      background: var(--text-muted);
-      opacity: 0.25;
-      height: 100%;
-    }
-
-    .progress-bar-fill-gain {
-      background: var(--primary-vivid);
-      height: 100%;
-    }
-
-    .lockin-info-box {
-      margin-top: auto;
-      padding: 16px 20px;
-      border-radius: var(--radius-sm);
-      background: var(--orange-light);
-      border: 1px solid rgba(234, 88, 12, 0.15);
-      color: var(--orange);
-      font-size: 0.9rem;
-      font-weight: 600;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      line-height: 1.55;
-    }
-
-    .lockin-info-box svg {
-      flex-shrink: 0;
-      margin-top: 3px;
-    }
-
-    /* Compounding Principle Callout */
-    .compounding-rule-box {
-      background: linear-gradient(135deg, #1a2e05 0%, #1a3a0a 100%);
-      border: 1px solid rgba(101, 163, 13, 0.2);
-      color: var(--white);
-      border-radius: var(--radius-md);
-      padding: 36px;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .rule-content h4 {
-      font-size: 1.45rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      color: var(--primary-bright);
-    }
-
-    .rule-content p {
-      font-size: 0.98rem;
-      color: #b8c9a3;
-      line-height: 1.7;
-    }
-
-    .rule-formula-card {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: var(--radius-md);
-      padding: 24px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-    }
-
-    .formula-title {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #b8c9a3;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .formula-math {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--primary-bright);
-      letter-spacing: 0.05em;
-      font-family: 'Inter', monospace;
-    }
-
-    .formula-sub {
-      font-size: 0.8rem;
-      color: #8a9b76;
-      margin-top: 10px;
-    }
-
-    /* ==========================================================================
-       SECTION 4: TIPS FOR BEGINNERS
-       ========================================================================== */
-    .tips-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-
-    .tip-card {
-      background: var(--white);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 32px;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-
-    .tip-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--primary-vivid);
-    }
-
-    .tip-number {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary-vivid), var(--primary));
-      color: var(--white);
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.05rem;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(101, 163, 13, 0.25);
-    }
-
-    .tip-card h3 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      color: var(--text-main);
-    }
-
-    .tip-card p {
-      font-size: 0.94rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-
-    /* ==========================================================================
-       FOOTER
-       ========================================================================== */
-    .footer {
-      background: #1a2e05;
-      color: #b8c9a3;
-      padding: 70px 0 40px;
-      border-top: 1px solid rgba(101, 163, 13, 0.15);
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 32px;
-      border-bottom: 1px solid rgba(101, 163, 13, 0.15);
-    }
-
-    .footer-logo {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--white);
-    }
-
-    .footer-logo span {
-      color: var(--primary-bright);
-    }
-
-    .footer-disclaimer {
-      font-size: 0.85rem;
-      color: #6b7c58;
-      margin-top: 28px;
-      text-align: center;
-      line-height: 1.65;
-    }
-
-    /* ==========================================================================
-       RESPONSIVE DESIGN
-       ========================================================================== */
-    @media (max-width: 992px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
-      }
-
-      .calc-controls {
-        grid-template-columns: 1fr;
-      }
-
-      .results-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .compounding-rule-box {
-        grid-template-columns: 1fr;
-      }
-
-      .tips-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      body {
-        padding: 10px;
-      }
-
-      .dashboard-shell {
-        border-radius: var(--radius-md);
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero-stats {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .calc-wrapper {
-        padding: 32px 20px;
-      }
-
-      .results-banner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-      }
-
-      .btn-primary {
-        width: 100%;
-        justify-content: center;
-      }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartSaver 🪙 | A Beginner's Guide to Saving & Investing</title>
+  <meta name="description" content="Discover where your money goes, compare 7 savings and investment options, and calculate your compound returns with SmartSaver — 100% free financial education." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪙</text></svg>" />
+  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-  <div class="dashboard-shell">
-
-    <!-- BACKGROUND DECORATIONS -->
-    <div class="decor-blob blob-1"></div>
-    <div class="decor-blob blob-2"></div>
-
-    <!-- NAVIGATION -->
-    <header class="header">
-      <div class="container nav-container">
-        <a href="#" class="logo">
-          <div class="logo-icon">₹</div>
-          <div>Smart<span>Saver</span></div>
+  <!-- ==========================================================================
+       1. STICKY NEO-BRUTALIST NAVBAR
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        
+        <!-- Brand Logo -->
+        <a href="#hero" class="brand-logo">
+          <span class="brand-icon-coin">🪙</span>
+          <span>Smart<span class="brand-tag">Saver</span></span>
         </a>
-        <ul class="nav-links">
-          <li><a href="#what-is-saving">💡 What is Saving?</a></li>
-          <li><a href="#options">📊 7 Options</a></li>
-          <li><a href="#calculator">🧮 Calculator</a></li>
-          <li><a href="#tips">🎯 Beginner Tips</a></li>
+
+        <!-- Desktop Nav Links -->
+        <ul class="nav-links-menu">
+          <li><a href="#what-is-saving" class="nav-link-btn">💡 What is Saving?</a></li>
+          <li><a href="#options" class="nav-link-btn">📊 7 Instruments</a></li>
+          <li><a href="#calculator" class="nav-link-btn">🧮 ROI Calculator</a></li>
+          <li><a href="#tips" class="nav-link-btn">🏆 3 Golden Rules</a></li>
+          <li><a href="#faq" class="nav-link-btn">❓ FAQs</a></li>
         </ul>
-        <div class="nav-right-controls">
-          <a href="#calculator" class="btn-nav">Calculate Returns</a>
-        </div>
-      </div>
-    </header>
 
-    <main>
-      <!-- HERO SECTION -->
-      <section class="hero" id="what-is-saving">
-        <div class="container hero-grid">
-          <div class="hero-left">
-            <div class="badge-pill">
-              <span class="badge-dot"></span>
-              Financial Literacy Project • Beginner Friendly
-            </div>
-            <h1 class="hero-title">
-              Smart Saver:<br>
-              <span class="gradient-text">A Beginner's Guide</span> to Saving
-            </h1>
-            <p class="hero-description">
-              Building wealth doesn't require a finance degree. Discover where your money goes, how compound interest
-              works, and choose the perfect savings option for your financial journey.
-            </p>
+        <!-- Right Action Button -->
+        <a href="#calculator" class="header-cta-btn">
+          <i class="bi bi-rocket-takeoff-fill"></i> Start Saving
+        </a>
 
-            <div class="hero-stats">
-              <div class="stat-box">
-                <h4>7 Options</h4>
-                <p>Simple & safe choices</p>
-              </div>
-              <div class="stat-box">
-                <h4>₹1,000</h4>
-                <p>Minimum to start</p>
-              </div>
-              <div class="stat-box">
-                <h4>100% Free</h4>
-                <p>Educational tool</p>
-              </div>
-            </div>
-          </div>
+        <!-- Mobile Toggle Button -->
+        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu">
+          <i class="bi bi-list"></i>
+        </button>
 
-          <!-- HERO CARD: WHAT IS SAVING? -->
-          <div class="hero-right">
-            <div class="saving-card">
-              <div class="saving-card-header">
-                <div class="saving-card-icon">💡</div>
-                <div>
-                  <h3>What is Saving?</h3>
-                  <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">THE GOLDEN
-                    DEFINITION</span>
-                </div>
-              </div>
-              <p>
-                Saving simply means <strong>setting aside a portion of your money today</strong> so you can use it for
-                something important tomorrow—like emergencies, buying a house, or retiring comfortably.
-              </p>
+      </nav>
+    </div>
+  </header>
 
-              <div class="saving-bullets">
-                <div class="bullet-item">
-                  <div class="bullet-check">✓</div>
-                  <div><strong>Safety Net:</strong> Protects you against unexpected emergency expenses.</div>
-                </div>
-                <div class="bullet-item">
-                  <div class="bullet-check">✓</div>
-                  <div><strong>Beats Inflation:</strong> Keeps your cash from losing buying power over time.</div>
-                </div>
-                <div class="bullet-item">
-                  <div class="bullet-check">✓</div>
-                  <div><strong>Wealth Engine:</strong> Lets compound interest multiply your money effortlessly.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileNavDrawer">
+    <ul class="mobile-drawer-links">
+      <li><a href="#what-is-saving" class="mobile-drawer-item">💡 What is Saving?</a></li>
+      <li><a href="#options" class="mobile-drawer-item">📊 7 Instruments</a></li>
+      <li><a href="#calculator" class="mobile-drawer-item">🧮 ROI Calculator</a></li>
+      <li><a href="#tips" class="mobile-drawer-item">🏆 3 Golden Rules</a></li>
+      <li><a href="#faq" class="mobile-drawer-item">❓ FAQs</a></li>
+    </ul>
+    <a href="#calculator" class="btn btn-orange" style="width: 100%; text-align: center;">
+      <i class="bi bi-rocket-takeoff-fill"></i> Launch Calculator
+    </a>
+  </div>
 
-      <!-- SECTION 2: 7 SAVINGS OPTIONS -->
-      <section class="section section-alt" id="options">
-        <div class="container">
-          <div class="section-header">
-            <span class="eyebrow">Learn the Options</span>
-            <h2 class="section-title">Where Can You Save or Invest?</h2>
-            <p class="section-subtitle">
-              Here are 7 common savings and investment instruments explained in simple language. Use the tabs to filter
-              by
-              investment style.
-            </p>
-          </div>
-
-          <!-- Option Filter Tabs -->
-          <div class="options-tabs-container">
-            <button class="tab-btn active" onclick="filterOptions('all')">Show All</button>
-            <button class="tab-btn" onclick="filterOptions('safe')">Safe & Secure</button>
-            <button class="tab-btn" onclick="filterOptions('growth')">High Growth</button>
-            <button class="tab-btn" onclick="filterOptions('short')">Short Term</button>
-            <button class="tab-btn" onclick="filterOptions('long')">Long Term</button>
-          </div>
-
-          <div class="options-grid" id="options-grid">
-
-            <!-- 1. Savings Account -->
-            <article class="option-card" data-category="safe short">
-              <div class="option-top">
-                <div class="option-icon bg-green">🏦</div>
-                <span class="tag-badge tag-green">Highly Liquid</span>
-              </div>
-              <h3 class="option-title">Savings Account</h3>
-              <p class="option-desc">
-                Keep your money in a commercial bank account. You can withdraw cash anytime via debit card or UPI. Ideal
-                for daily spending and immediate emergency funds.
-              </p>
-              <div class="option-footer">
-                <span>Risk: <strong>Minimal</strong></span>
-                <span class="option-lock">🔓 Instant Access</span>
-              </div>
-            </article>
-
-            <!-- 2. Fixed Deposit (FD) -->
-            <article class="option-card" data-category="safe short">
-              <div class="option-top">
-                <div class="option-icon bg-teal">🔒</div>
-                <span class="tag-badge tag-teal">Short to Medium Term</span>
-              </div>
-              <h3 class="option-title">Fixed Deposit (FD)</h3>
-              <p class="option-desc">
-                Deposit a lump sum for a fixed period (e.g., 1 to 5 years) to lock in guaranteed interest. Safe and
-                predictable growth for short-term goals.
-              </p>
-              <div class="option-footer">
-                <span>Returns: ~7% p.a.</span>
-                <span class="option-lock">⚠️ Early exit penalty</span>
-              </div>
-            </article>
-
-            <!-- 3. Recurring Deposit (RD) -->
-            <article class="option-card" data-category="safe short">
-              <div class="option-top">
-                <div class="option-icon bg-blue">📅</div>
-                <span class="tag-badge tag-blue">Monthly Savings</span>
-              </div>
-              <h3 class="option-title">Recurring Deposit (RD)</h3>
-              <p class="option-desc">
-                Deposit a fixed small amount every single month for a chosen duration. Perfect for building a
-                disciplined
-                saving habit out of your monthly salary.
-              </p>
-              <div class="option-footer">
-                <span>Risk: <strong>Minimal</strong></span>
-                <span class="option-lock">🗓️ Fixed Monthly</span>
-              </div>
-            </article>
-
-            <!-- 4. Post Office Schemes -->
-            <article class="option-card" data-category="safe short">
-              <div class="option-top">
-                <div class="option-icon bg-amber">🏤</div>
-                <span class="tag-badge tag-amber">Safe & Govt Backed</span>
-              </div>
-              <h3 class="option-title">Post Office Schemes</h3>
-              <p class="option-desc">
-                Government-backed savings accounts and time deposits provided via India Post. Highly secure for
-                risk-averse investors seeking guaranteed safety.
-              </p>
-              <div class="option-footer">
-                <span>Risk: <strong>Zero (Govt)</strong></span>
-                <span class="option-lock">🛡️ 100% Safe</span>
-              </div>
-            </article>
-
-            <!-- 5. Liquid Mutual Funds -->
-            <article class="option-card" data-category="growth short">
-              <div class="option-top">
-                <div class="option-icon bg-teal">💧</div>
-                <span class="tag-badge tag-teal">Better Returns • Short Term</span>
-              </div>
-              <h3 class="option-title">Liquid Mutual Funds</h3>
-              <p class="option-desc">
-                Mutual funds that invest in very short-term government securities and corporate debt. Generally offers
-                better returns than traditional savings accounts.
-              </p>
-              <div class="option-footer">
-                <span>Returns: ~6.5% p.a.</span>
-                <span class="option-lock">⚡ 1–2 Days Payout</span>
-              </div>
-            </article>
-
-            <!-- 6. Equity Mutual Funds -->
-            <article class="option-card featured" data-category="growth long">
-              <span class="featured-badge">High Growth</span>
-              <div class="option-top">
-                <div class="option-icon bg-green">📈</div>
-                <span class="tag-badge tag-purple">High Risk • Long Term</span>
-              </div>
-              <h3 class="option-title">Equity Mutual Funds</h3>
-              <p class="option-desc">
-                Invests your money in stock market companies. Prices fluctuate short term, but historically offer the
-                highest long-term wealth growth (10+ years).
-              </p>
-              <div class="option-footer">
-                <span>Hist. Return: ~12% p.a.</span>
-                <span class="option-lock">📊 Market Linked</span>
-              </div>
-            </article>
-
-            <!-- 7. Public Provident Fund (PPF) -->
-            <article class="option-card featured" data-category="safe long">
-              <span class="featured-badge">Tax Free</span>
-              <div class="option-top">
-                <div class="option-icon bg-amber">🌱</div>
-                <span class="tag-badge tag-amber">Long Term (15-Yr Lock-in)</span>
-              </div>
-              <h3 class="option-title">Public Provident Fund (PPF)</h3>
-              <p class="option-desc">
-                A flagship long-term government savings scheme offering tax exemption under Sec 80C. Comes with a
-                mandatory 15-year maturity lock-in period.
-              </p>
-              <div class="option-footer">
-                <span>Interest: ~7.1% p.a.</span>
-                <span class="option-lock">🔒 15-Year Lock-in</span>
-              </div>
-            </article>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 3: INTERACTIVE CALCULATOR -->
-      <section class="section" id="calculator">
-        <div class="container">
-          <div class="section-header">
-            <span class="eyebrow">Core Feature</span>
-            <h2 class="section-title">Where Should I Invest?</h2>
-            <p class="section-subtitle">
-              Enter how much you wish to save and choose your time horizon to see personalized recommendations and
-              compound returns projections.
-            </p>
-          </div>
-
-          <div class="calc-wrapper">
-            <div class="calc-controls">
-
-              <!-- Input 1: Amount -->
-              <div class="input-group">
-                <div class="input-label-row">
-                  <label for="calc-amount">How much do you want to save?</label>
-                </div>
-                <div class="currency-input-wrapper">
-                  <span class="currency-symbol">₹</span>
-                  <input type="number" id="calc-amount" class="calc-input" value="1000" min="100" max="1000000"
-                    step="500">
-                </div>
-
-                <input type="range" id="calc-slider" class="range-slider" min="500" max="100000" value="1000"
-                  step="500">
-
-                <div class="preset-pills">
-                  <button type="button" class="preset-btn active" onclick="setAmount(1000)">₹1,000</button>
-                  <button type="button" class="preset-btn" onclick="setAmount(5000)">₹5,000</button>
-                  <button type="button" class="preset-btn" onclick="setAmount(10000)">₹10,000</button>
-                  <button type="button" class="preset-btn" onclick="setAmount(25000)">₹25,000</button>
-                  <button type="button" class="preset-btn" onclick="setAmount(50000)">₹50,000</button>
-                </div>
-              </div>
-
-              <!-- Input 2: Time Horizon -->
-              <div class="input-group">
-                <label for="calc-horizon">Select Time Horizon</label>
-                <div class="select-wrapper">
-                  <select id="calc-horizon" class="calc-select">
-                    <option value="short">Short Term (1 – 3 Years)</option>
-                    <option value="long">Long Term (5+ Years)</option>
-                  </select>
-                  <span class="select-arrow">▼</span>
-                </div>
-                <p style="font-size: 0.86rem; color: var(--text-muted); margin-top: 10px;">
-                  💡 <em>Short Term prioritizes safety & liquidity; Long Term prioritizes compound growth.</em>
-                </p>
-              </div>
-
-            </div>
-
-            <!-- ACTION BUTTONS -->
-            <div class="calc-btn-container">
-              <button type="button" class="btn-primary" onclick="calculateReturns()">
-                <span>Calculate My Returns</span>
-                <span>→</span>
-              </button>
-              <button type="button" class="btn-outline" onclick="resetCalculator()">
-                <span>Reset</span>
-                <span>↺</span>
-              </button>
-            </div>
-
-            <!-- DYNAMIC RESULTS CONTAINER -->
-            <div id="results-container" class="results-container">
-
-              <div class="results-banner">
-                <div class="results-banner-text" id="banner-text">
-                  Projections for saving <strong>₹1,000</strong> over <strong>3 Years</strong>:
-                </div>
-                <div class="horizon-badge" id="horizon-badge">Short Term Strategy</div>
-              </div>
-
-              <div class="results-grid" id="results-grid">
-                <!-- Dynamically Populated by JavaScript -->
-              </div>
-
-              <!-- COMPOUND INTEREST RULE CALLOUT -->
-              <div class="compounding-rule-box">
-                <div class="rule-content">
-                  <h4>✨ The Magic of Compound Interest</h4>
-                  <p>
-                    Compound interest is when you earn interest not only on your original principal money, but also on
-                    the
-                    interest accumulated over past years. <strong>Time is your greatest ally—the earlier you start, the
-                      faster your money multiplies!</strong>
-                  </p>
-                </div>
-                <div class="rule-formula-card">
-                  <div class="formula-title">Compound Interest Rule</div>
-                  <div class="formula-math">A = P(1 + r)<sup>t</sup></div>
-                  <div class="formula-sub">A = Future Amount • P = Principal • r = Rate • t = Time</div>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 4: BEGINNER TIPS -->
-      <section class="section section-alt" id="tips">
-        <div class="container">
-          <div class="section-header">
-            <span class="eyebrow">Smart Habits</span>
-            <h2 class="section-title">3 Golden Rules for Beginners</h2>
-            <p class="section-subtitle">
-              Follow these timeless financial principles before making your first investment.
-            </p>
-          </div>
-
-          <div class="tips-grid">
-            <div class="tip-card">
-              <div class="tip-number">1</div>
-              <h3>Build an Emergency Fund First</h3>
-              <p>
-                Before investing in long-term options like Equity or PPF, save 3 to 6 months of living expenses in a
-                Liquid Fund or Bank Savings Account so you are protected during emergencies.
-              </p>
-            </div>
-
-            <div class="tip-card">
-              <div class="tip-number">2</div>
-              <h3>Understand the Lock-in Period</h3>
-              <p>
-                Never lock money in PPF (15 years) or Fixed Deposits if you will need cash in the next few months. Match
-                your investments directly with your personal timeline.
-              </p>
-            </div>
-
-            <div class="tip-card">
-              <div class="tip-number">3</div>
-              <h3>Start Small, Stay Consistent</h3>
-              <p>
-                You don't need lakhs to begin. A monthly recurring deposit (RD) or mutual fund SIP of even ₹500/month
-                helps build wealth steadily over time.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="footer">
+  <main>
+    <!-- ==========================================================================
+         2. HERO SECTION
+         ========================================================================== -->
+    <section class="hero-section" id="hero">
       <div class="container">
-        <div class="footer-content">
-          <div class="footer-logo">
-            Smart<span>Saver</span>
+        <div class="hero-grid">
+          
+          <!-- Left Column -->
+          <div class="hero-left-col">
+            <span class="badge-pill badge-orange">
+              ✨ Financial Freedom 101 • 100% Beginner Friendly
+            </span>
+
+            <h1 class="hero-title">
+              Stop Wondering Where Your Money Goes.<br />
+              <span class="hero-highlight-text">Put It to Work.</span>
+            </h1>
+
+            <p class="hero-description">
+              Building wealth doesn't require a finance degree or lakhs in capital. Discover simple, safe savings options, unlock the secret of compound interest, and start growing your money today.
+            </p>
+
+            <!-- 3 Retro Metric Boxes -->
+            <div class="hero-stats-trio">
+              <div class="stat-box-retro">
+                <div class="stat-num-retro orange">7</div>
+                <div class="stat-label-retro">Simple Options</div>
+              </div>
+              <div class="stat-box-retro">
+                <div class="stat-num-retro green">₹500</div>
+                <div class="stat-label-retro">Min. to Start</div>
+              </div>
+              <div class="stat-box-retro">
+                <div class="stat-num-retro blue">100%</div>
+                <div class="stat-label-retro">Free Education</div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="hero-actions-row">
+              <a href="#options" class="btn btn-orange">
+                <i class="bi bi-compass-fill"></i> Explore 7 Options
+              </a>
+              <a href="#calculator" class="btn btn-white">
+                <i class="bi bi-calculator-fill"></i> Calculate Returns
+              </a>
+            </div>
           </div>
-          <div style="font-size: 0.9rem;">
-            Empowering Beginners with Financial Literacy
+
+          <!-- Right Column: Interactive "What is Saving?" Feature Card -->
+          <div class="hero-right-col" id="what-is-saving">
+            <div class="hero-feature-card">
+              
+              <div class="feature-card-header">
+                <div class="feature-coin-icon">💡</div>
+                <div>
+                  <span class="badge-pill badge-yellow" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; margin-bottom: 0.25rem;">The Golden Rule</span>
+                  <h3 class="feature-title">What is Saving?</h3>
+                </div>
+              </div>
+
+              <div class="feature-def-box">
+                "Saving simply means setting aside a portion of your income today so you can protect yourself from emergencies and build wealth for your future."
+              </div>
+
+              <div class="feature-checklist">
+                <div class="feature-check-item">
+                  <span class="check-circle"><i class="bi bi-check-lg"></i></span>
+                  <span>Safety shield against emergency expenses</span>
+                </div>
+                <div class="feature-check-item">
+                  <span class="check-circle"><i class="bi bi-check-lg"></i></span>
+                  <span>Exponential growth via compound interest</span>
+                </div>
+                <div class="feature-check-item">
+                  <span class="check-circle"><i class="bi bi-check-lg"></i></span>
+                  <span>Freedom to achieve your life goals early</span>
+                </div>
+              </div>
+
+            </div>
           </div>
-        </div>
-        <div class="footer-disclaimer">
-          Disclaimer: This website is an educational project designed for financial literacy. Interest rates and return
-          rates (e.g., FD @ 7%, Liquid @ 6.5%, Equity @ 12%, PPF @ 7.1%) are illustrative estimates based on market
-          historical benchmarks and do not constitute formal financial advice.
+
         </div>
       </div>
-    </footer>
+    </section>
 
-  </div><!-- end .dashboard-shell -->
+    <!-- ==========================================================================
+         3. 7 SAVINGS & INVESTMENT INSTRUMENTS (FILTERABLE GRID)
+         ========================================================================== -->
+    <section class="section" id="options" style="background: var(--card-white); border-top: var(--border-thick);">
+      <div class="container">
+        
+        <div class="section-header-retro">
+          <span class="badge-pill badge-pink">Learn the Options</span>
+          <h2 class="section-title-retro">Where Can You Save or Invest?</h2>
+          <p class="section-subtitle-retro">
+            Here are 7 common savings and investment instruments in India, explained in plain language without financial jargon.
+          </p>
+        </div>
 
-  <!-- JAVASCRIPT LOGIC -->
-  <script>
-    // Filter Options Grid
-    function filterOptions(category) {
-      // Update Active Tab Class
-      const tabs = document.querySelectorAll('.tab-btn');
-      tabs.forEach(tab => tab.classList.remove('active'));
-      event.currentTarget.classList.add('active');
+        <!-- Filter Category Tabs -->
+        <div class="filter-tabs-strip">
+          <button type="button" class="filter-tab-pill active" data-filter="all">
+            <i class="bi bi-grid-fill"></i> Show All (7)
+          </button>
+          <button type="button" class="filter-tab-pill" data-filter="safe">
+            <i class="bi bi-shield-fill-check" style="color: var(--accent-green-dark);"></i> Safe & Secure
+          </button>
+          <button type="button" class="filter-tab-pill" data-filter="growth">
+            <i class="bi bi-graph-up-arrow" style="color: var(--accent-orange);"></i> High Growth
+          </button>
+          <button type="button" class="filter-tab-pill" data-filter="short">
+            <i class="bi bi-lightning-charge-fill" style="color: #D97706;"></i> Short Term (< 1 Yr)
+          </button>
+          <button type="button" class="filter-tab-pill" data-filter="long">
+            <i class="bi bi-hourglass-split" style="color: var(--accent-blue-dark);"></i> Long Term (3+ Yrs)
+          </button>
+        </div>
 
-      const cards = document.querySelectorAll('.option-card');
-      cards.forEach(card => {
-        const categories = card.getAttribute('data-category');
-        if (category === 'all' || categories.includes(category)) {
-          card.style.display = 'flex';
-          card.style.opacity = '1';
-        } else {
-          card.style.display = 'none';
-          card.style.opacity = '0';
-        }
-      });
-    }
-
-    // Calculator Elements
-    const amountInput = document.getElementById('calc-amount');
-    const amountSlider = document.getElementById('calc-slider');
-    const horizonSelect = document.getElementById('calc-horizon');
-    const resultsContainer = document.getElementById('results-container');
-    const resultsGrid = document.getElementById('results-grid');
-    const bannerText = document.getElementById('banner-text');
-    const horizonBadge = document.getElementById('horizon-badge');
-
-    // Synchronize Input Box & Range Slider
-    amountInput.addEventListener('input', function () {
-      const val = Math.max(100, Number(this.value) || 0);
-      amountSlider.value = Math.min(100000, val);
-      updatePresetPills(val);
-    });
-
-    amountSlider.addEventListener('input', function () {
-      amountInput.value = this.value;
-      updatePresetPills(Number(this.value));
-    });
-
-    function setAmount(val) {
-      amountInput.value = val;
-      amountSlider.value = Math.min(100000, val);
-      updatePresetPills(val);
-    }
-
-    function updatePresetPills(val) {
-      document.querySelectorAll('.preset-btn').forEach(btn => {
-        const btnVal = Number(btn.textContent.replace(/[^0-9]/g, ''));
-        if (btnVal === val) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-    }
-
-    // Currency Formatter for INR (Indian Rupee)
-    function formatINR(n) {
-      return new Intl.NumberFormat('en-IN', {
-        style: 'currency',
-        currency: 'INR',
-        maximumFractionDigits: 0
-      }).format(n);
-    }
-
-    // Compound Interest Calculator Formula: A = P * (1 + r)^t
-    function calculateCompoundInterest(principal, annualRateDecimal, years) {
-      return Math.round(principal * Math.pow(1 + annualRateDecimal, years));
-    }
-
-    // Core Calculation Logic
-    function calculateReturns() {
-      const amount = Number(amountInput.value);
-      const horizon = horizonSelect.value;
-
-      if (!amount || amount <= 0) {
-        alert('Please enter a valid amount greater than ₹0.');
-        return;
-      }
-
-      resultsGrid.innerHTML = '';
-
-      if (horizon === 'short') {
-        // SHORT TERM (1-3 Years) -> Assume 3 Years
-        const years = 3;
-        bannerText.innerHTML = `Projections for saving <strong>${formatINR(amount)}</strong> over <strong>${years} Years (Short Term)</strong>:`;
-        horizonBadge.textContent = 'Short Term (3 Years)';
-        horizonBadge.style.background = 'var(--primary-light)';
-        horizonBadge.style.color = 'var(--primary)';
-
-        // Option A: Fixed Deposit (FD) @ 7%
-        const fdReturnRate = 0.07;
-        const fdMaturity = calculateCompoundInterest(amount, fdReturnRate, years);
-        const fdGain = fdMaturity - amount;
-        const fdGainPercent = Math.round((fdGain / amount) * 100);
-
-        // Option B: Liquid Mutual Fund @ 6.5%
-        const liquidReturnRate = 0.065;
-        const liquidMaturity = calculateCompoundInterest(amount, liquidReturnRate, years);
-        const liquidGain = liquidMaturity - amount;
-        const liquidGainPercent = Math.round((liquidGain / amount) * 100);
-
-        // Render Short Term Cards
-        resultsGrid.innerHTML = `
-          <!-- FD Recommendation -->
-          <div class="result-card highlight">
-            <div class="result-card-header">
-              <div>
-                <div class="result-instrument-name">Fixed Deposit (FD)</div>
-                <span style="font-size: 0.82rem; color: var(--text-muted);">Bank Guaranteed Savings</span>
-              </div>
-              <span class="result-rate">7.0% p.a.</span>
+        <!-- 7 Cards Grid -->
+        <div class="instruments-grid" id="instrumentsGrid">
+          
+          <!-- Card 1: Savings Account -->
+          <div class="instrument-card theme-blue" data-categories="safe short">
+            <div class="instrument-card-header">
+              <div class="instrument-icon-box">🏦</div>
+              <span class="badge-pill badge-blue">Highly Liquid</span>
             </div>
-
-            <div class="result-amount-label">Estimated Value after 3 Years</div>
-            <div class="result-amount-value">${formatINR(fdMaturity)}</div>
-
-            <div class="result-profit-badge">
-              <span>📈 Growth: +${formatINR(fdGain)} (${fdGainPercent}%)</span>
-            </div>
-
-            <div class="progress-bar-container">
-              <div class="progress-bar-label">
-                <span>Principal (${formatINR(amount)})</span>
-                <span>Interest (+${formatINR(fdGain)})</span>
+            <div class="instrument-card-body">
+              <h3 class="instrument-title">Savings Account</h3>
+              <p class="instrument-desc">
+                Keep your money in a commercial bank account. Withdraw cash anytime via debit card, ATM, or UPI. Ideal for day-to-day spending and immediate funds.
+              </p>
+              <div class="instrument-metrics-box">
+                <div class="metric-item">
+                  <span class="metric-label">Expected ROI</span>
+                  <span class="metric-val roi">3% – 4% p.a.</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">Lock-in Period</span>
+                  <span class="metric-val">None (Instant)</span>
+                </div>
               </div>
-              <div class="progress-bar-track">
-                <div class="progress-bar-fill-principal" style="width: ${Math.round((amount / fdMaturity) * 100)}%;"></div>
-                <div class="progress-bar-fill-gain" style="width: ${Math.round((fdGain / fdMaturity) * 100)}%;"></div>
+              <div class="instrument-tags-row">
+                <span class="badge-pill badge-green">Risk: Minimal</span>
+                <span class="badge-pill badge-blue">⚡ Instant UPI</span>
               </div>
-            </div>
-
-            <div class="lockin-info-box">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5% 0 0 1 10 0v4"/></svg>
-              <div><strong>Lock-in Warning:</strong> Fixed Deposits charge penalties or reduce interest if you withdraw before the agreed tenure ends.</div>
             </div>
           </div>
 
-          <!-- Liquid Mutual Fund Recommendation -->
-          <div class="result-card">
-            <div class="result-card-header">
-              <div>
-                <div class="result-instrument-name">Liquid Mutual Fund</div>
-                <span style="font-size: 0.82rem; color: var(--text-muted);">Flexible Short-Term Debt</span>
+          <!-- Card 2: Fixed Deposit (FD) -->
+          <div class="instrument-card theme-orange" data-categories="safe short long">
+            <div class="instrument-card-header">
+              <div class="instrument-icon-box">🔒</div>
+              <span class="badge-pill badge-orange">Guaranteed Return</span>
+            </div>
+            <div class="instrument-card-body">
+              <h3 class="instrument-title">Fixed Deposit (FD)</h3>
+              <p class="instrument-desc">
+                Deposit a lump-sum amount with a bank for a fixed duration (7 days to 10 years). You earn a guaranteed interest rate unaffected by market swings.
+              </p>
+              <div class="instrument-metrics-box">
+                <div class="metric-item">
+                  <span class="metric-label">Expected ROI</span>
+                  <span class="metric-val roi">6.5% – 7.5% p.a.</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">Lock-in Period</span>
+                  <span class="metric-val">7 Days – 10 Yrs</span>
+                </div>
               </div>
-              <span class="result-rate" style="background: var(--blue-light); color: var(--blue);">6.5% p.a.</span>
-            </div>
-
-            <div class="result-amount-label">Estimated Value after 3 Years</div>
-            <div class="result-amount-value">${formatINR(liquidMaturity)}</div>
-
-            <div class="result-profit-badge" style="background: var(--blue-light); color: var(--blue);">
-              <span>📈 Growth: +${formatINR(liquidGain)} (${liquidGainPercent}%)</span>
-            </div>
-
-            <div class="progress-bar-container">
-              <div class="progress-bar-label">
-                <span>Principal (${formatINR(amount)})</span>
-                <span>Interest (+${formatINR(liquidGain)})</span>
+              <div class="instrument-tags-row">
+                <span class="badge-pill badge-green">Risk: Low</span>
+                <span class="badge-pill badge-orange">🛡️ DICGC Insured</span>
               </div>
-              <div class="progress-bar-track">
-                <div class="progress-bar-fill-principal" style="width: ${Math.round((amount / liquidMaturity) * 100)}%;"></div>
-                <div class="progress-bar-fill-gain" style="width: ${Math.round((liquidGain / liquidMaturity) * 100)}%; background: var(--blue);"></div>
-              </div>
-            </div>
-
-            <div class="lockin-info-box" style="background: var(--teal-light); border-color: rgba(13, 148, 136, 0.15); color: var(--teal);">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              <div><strong>High Liquidity:</strong> No FD-style exit penalty after 7 days! Money can be redeemed into your bank account within 24 hours.</div>
-            </div>
-          </div>
-        `;
-
-      } else {
-        // LONG TERM (5+ Years) -> Assume 10 Years
-        const years = 10;
-        bannerText.innerHTML = `Projections for saving <strong>${formatINR(amount)}</strong> over <strong>${years} Years (Long Term)</strong>:`;
-        horizonBadge.textContent = 'Long Term (10 Years)';
-        horizonBadge.style.background = 'var(--orange-light)';
-        horizonBadge.style.color = 'var(--orange)';
-
-        // Option A: Equity Mutual Funds @ 12%
-        const equityReturnRate = 0.12;
-        const equityMaturity = calculateCompoundInterest(amount, equityReturnRate, years);
-        const equityGain = equityMaturity - amount;
-        const equityGainPercent = Math.round((equityGain / amount) * 100);
-
-        // Option B: Public Provident Fund (PPF) @ 7.1%
-        const ppfReturnRate = 0.071;
-        const ppfMaturity = calculateCompoundInterest(amount, ppfReturnRate, years);
-        const ppfGain = ppfMaturity - amount;
-        const ppfGainPercent = Math.round((ppfGain / amount) * 100);
-
-        // Render Long Term Cards
-        resultsGrid.innerHTML = `
-          <!-- Equity Mutual Funds -->
-          <div class="result-card highlight">
-            <div class="result-card-header">
-              <div>
-                <div class="result-instrument-name">Equity Mutual Fund</div>
-                <span style="font-size: 0.82rem; color: var(--text-muted);">High Risk • High Growth</span>
-              </div>
-              <span class="result-rate" style="background: var(--purple-light); color: var(--purple);">12.0% p.a.</span>
-            </div>
-
-            <div class="result-amount-label">Estimated Value after 10 Years</div>
-            <div class="result-amount-value" style="color: var(--purple);">${formatINR(equityMaturity)}</div>
-
-            <div class="result-profit-badge" style="background: var(--purple-light); color: var(--purple);">
-              <span>🚀 Wealth Growth: +${formatINR(equityGain)} (+${equityGainPercent}%)</span>
-            </div>
-
-            <div class="progress-bar-container">
-              <div class="progress-bar-label">
-                <span>Principal (${formatINR(amount)})</span>
-                <span>Growth (+${formatINR(equityGain)})</span>
-              </div>
-              <div class="progress-bar-track">
-                <div class="progress-bar-fill-principal" style="width: ${Math.round((amount / equityMaturity) * 100)}%;"></div>
-                <div class="progress-bar-fill-gain" style="width: ${Math.round((equityGain / equityMaturity) * 100)}%; background: var(--purple);"></div>
-              </div>
-            </div>
-
-            <div class="lockin-info-box" style="background: var(--orange-light); border-color: rgba(234, 88, 12, 0.15); color: var(--orange);">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-              <div><strong>Market Risk Note:</strong> Returns fluctuate year-to-year. High rewards require staying invested long term (5+ years) to smooth out market downturns.</div>
             </div>
           </div>
 
-          <!-- Public Provident Fund (PPF) -->
-          <div class="result-card">
-            <div class="result-card-header">
-              <div>
-                <div class="result-instrument-name">Public Provident Fund (PPF)</div>
-                <span style="font-size: 0.82rem; color: var(--text-muted);">Government Guaranteed • Tax Free</span>
-              </div>
-              <span class="result-rate">7.1% p.a.</span>
+          <!-- Card 3: Recurring Deposit (RD) -->
+          <div class="instrument-card theme-yellow" data-categories="safe short long">
+            <div class="instrument-card-header">
+              <div class="instrument-icon-box">🔁</div>
+              <span class="badge-pill badge-yellow">Disciplined Habit</span>
             </div>
-
-            <div class="result-amount-label">Estimated Value after 10 Years</div>
-            <div class="result-amount-value">${formatINR(ppfMaturity)}</div>
-
-            <div class="result-profit-badge">
-              <span>🛡️ Safe Growth: +${formatINR(ppfGain)} (+${ppfGainPercent}%)</span>
-            </div>
-
-            <div class="progress-bar-container">
-              <div class="progress-bar-label">
-                <span>Principal (${formatINR(amount)})</span>
-                <span>Interest (+${formatINR(ppfGain)})</span>
+            <div class="instrument-card-body">
+              <h3 class="instrument-title">Recurring Deposit (RD)</h3>
+              <p class="instrument-desc">
+                Deposit a fixed sum every month (e.g. ₹1,000/month) for a chosen tenure. Earn fixed FD-like interest while building a disciplined savings habit from your salary.
+              </p>
+              <div class="instrument-metrics-box">
+                <div class="metric-item">
+                  <span class="metric-label">Expected ROI</span>
+                  <span class="metric-val roi">6.5% – 7.2% p.a.</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">Lock-in Period</span>
+                  <span class="metric-val">6 Mos – 10 Yrs</span>
+                </div>
               </div>
-              <div class="progress-bar-track">
-                <div class="progress-bar-fill-principal" style="width: ${Math.round((amount / ppfMaturity) * 100)}%;"></div>
-                <div class="progress-bar-fill-gain" style="width: ${Math.round((ppfGain / ppfMaturity) * 100)}%;"></div>
+              <div class="instrument-tags-row">
+                <span class="badge-pill badge-green">Risk: Low</span>
+                <span class="badge-pill badge-yellow">📅 Monthly Auto-Debit</span>
               </div>
-            </div>
-
-            <div class="lockin-info-box">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5% 0 0 1 10 0v4"/></svg>
-              <div><strong>Strict 15-Year Lock-in:</strong> PPF has a mandatory 15-year maturity lock-in. Partial withdrawals are only allowed after the 7th financial year under strict rules.</div>
             </div>
           </div>
-        `;
-      }
 
-      // Show container & scroll smoothly to results
-      resultsContainer.style.display = 'block';
-      resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
+          <!-- Card 4: Post Office Schemes -->
+          <div class="instrument-card theme-pink" data-categories="safe long">
+            <div class="instrument-card-header">
+              <div class="instrument-icon-box">📮</div>
+              <span class="badge-pill badge-pink">Govt Backed</span>
+            </div>
+            <div class="instrument-card-body">
+              <h3 class="instrument-title">Post Office Schemes</h3>
+              <p class="instrument-desc">
+                Small savings schemes backed 100% by the Government of India (NSC, Monthly Income Scheme, KVP). Sovereign safety guarantee with zero default risk.
+              </p>
+              <div class="instrument-metrics-box">
+                <div class="metric-item">
+                  <span class="metric-label">Expected ROI</span>
+                  <span class="metric-val roi">7.0% – 7.7% p.a.</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">Lock-in Period</span>
+                  <span class="metric-val">1 Yr – 5 Yrs</span>
+                </div>
+              </div>
+              <div class="instrument-tags-row">
+                <span class="badge-pill badge-green">Risk: Sovereign (Zero)</span>
+                <span class="badge-pill badge-pink">🏛️ Govt of India</span>
+              </div>
+            </div>
+          </div>
 
-    // Reset Calculator to Initial State
-    function resetCalculator() {
-      // 1. Reset amount to default 1000
-      setAmount(1000);
+          <!-- Card 5: Liquid Mutual Funds -->
+          <div class="instrument-card theme-green" data-categories="safe short">
+            <div class="instrument-card-header">
+              <div class="instrument-icon-box">💧</div>
+              <span class="badge-pill badge-green">Smart Emergency Fund</span>
+            </div>
+            <div class="instrument-card-body">
+              <h3 class="instrument-title">Liquid Mutual Funds</h3>
+              <p class="instrument-desc">
+                Invests in ultra-short-term government securities and treasury bills (maturing within 91 days). Delivers higher returns than savings accounts with T+1 day withdrawal.
+              </p>
+              <div class="instrument-metrics-box">
+                <div class="metric-item">
+                  <span class="metric-label">Expected ROI</span>
+                  <span class="metric-val roi">6.5% – 7.0% p.a.</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">Lock-in Period</span>
+                  <span class="metric-val">None (T+1 Day)</span>
+                </div>
+              </div>
+              <div class="instrument-tags-row">
+                <span class="badge-pill badge-green">Risk: Very Low</span>
+                <span class="badge-pill badge-blue">⚡ Fast Redemption</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6: Equity Mutual Funds (SIP) -->
+          <div class="instrument-card theme-purple" data-categories="growth long">
+            <div class="instrument-card-header">
+              <div class="instrument-icon-box">📈</div>
+              <span class="badge-pill badge-purple">Wealth Multiplier</span>
+            </div>
+            <div class="instrument-card-body">
+              <h3 class="instrument-title">Equity Mutual Funds</h3>
+              <p class="instrument-desc">
+                Invest in top companies via Systematic Investment Plans (SIP). Higher risk in the short term, but historically the #1 asset class for beating inflation and creating long-term wealth.
+              </p>
+              <div class="instrument-metrics-box">
+                <div class="metric-item">
+                  <span class="metric-label">Expected ROI</span>
+                  <span class="metric-val roi">12% – 15% p.a.</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">Ideal Horizon</span>
+                  <span class="metric-val">5+ Years</span>
+                </div>
+              </div>
+              <div class="instrument-tags-row">
+                <span class="badge-pill badge-yellow">Risk: Moderate to High</span>
+                <span class="badge-pill badge-orange">🚀 Compounding King</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 7: Public Provident Fund (PPF) -->
+          <div class="instrument-card theme-green" data-categories="safe long">
+            <div class="instrument-card-header">
+              <div class="instrument-icon-box">🏛️</div>
+              <span class="badge-pill badge-green">Triple Tax-Free (EEE)</span>
+            </div>
+            <div class="instrument-card-body">
+              <h3 class="instrument-title">Public Provident Fund (PPF)</h3>
+              <p class="instrument-desc">
+                A 15-year government scheme offering guaranteed interest with complete tax exemption on investment, interest earned, and maturity proceeds (Exempt-Exempt-Exempt).
+              </p>
+              <div class="instrument-metrics-box">
+                <div class="metric-item">
+                  <span class="metric-label">Expected ROI</span>
+                  <span class="metric-val roi">7.1% p.a.</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">Lock-in Period</span>
+                  <span class="metric-val">15 Years</span>
+                </div>
+              </div>
+              <div class="instrument-tags-row">
+                <span class="badge-pill badge-green">Risk: Zero (Govt)</span>
+                <span class="badge-pill badge-pink">💰 100% Tax-Free</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. INTERACTIVE CALCULATOR & RECOMMENDATION ENGINE
+         ========================================================================== -->
+    <section class="calculator-section" id="calculator">
+      <div class="container">
+        
+        <div class="section-header-retro">
+          <span class="badge-pill badge-yellow">Core Feature</span>
+          <h2 class="section-title-retro">Where Should I Invest?</h2>
+          <p class="section-subtitle-retro">
+            Enter how much you wish to save and choose your time horizon to see personalized instrument recommendations and projected compound returns.
+          </p>
+        </div>
+
+        <div class="calculator-grid">
+          
+          <!-- Left: Input Form Controls -->
+          <div class="calc-interactive-card">
+            
+            <!-- Step 1: Amount -->
+            <div class="calc-step-header">
+              <span class="calc-step-num">1</span>
+              <h3 class="calc-step-title">How Much Do You Want to Save?</h3>
+            </div>
+
+            <div class="amount-pills-grid">
+              <button type="button" class="amount-pill-btn" data-amount="1000">₹1,000</button>
+              <button type="button" class="amount-pill-btn" data-amount="5000">₹5,000</button>
+              <button type="button" class="amount-pill-btn active" data-amount="10000">₹10,000</button>
+              <button type="button" class="amount-pill-btn" data-amount="25000">₹25,000</button>
+              <button type="button" class="amount-pill-btn" data-amount="50000">₹50,000</button>
+            </div>
+
+            <div class="custom-input-wrap">
+              <span class="currency-icon">₹</span>
+              <input type="number" id="calcCustomAmount" class="custom-num-input" value="10000" min="100" step="500" placeholder="Enter custom amount" />
+            </div>
+
+            <!-- Step 2: Time Horizon -->
+            <div class="calc-step-header">
+              <span class="calc-step-num">2</span>
+              <h3 class="calc-step-title">When Will You Need This Money?</h3>
+            </div>
+
+            <div class="horizon-options-grid">
+              
+              <div class="horizon-radio-card" data-horizon="short">
+                <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">⚡</div>
+                <div class="horizon-name">Short Term</div>
+                <div class="horizon-desc">Under 1 Year (Safety First)</div>
+              </div>
+
+              <div class="horizon-radio-card active" data-horizon="medium">
+                <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">⚖️</div>
+                <div class="horizon-name">Medium Term</div>
+                <div class="horizon-desc">1 to 3 Years (Steady ROI)</div>
+              </div>
+
+              <div class="horizon-radio-card" data-horizon="long">
+                <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">🚀</div>
+                <div class="horizon-name">Long Term</div>
+                <div class="horizon-desc">3 to 5+ Years (High Growth)</div>
+              </div>
+
+            </div>
+
+            <div style="font-size: 0.84rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem;">
+              <i class="bi bi-info-circle-fill" style="color: var(--accent-orange);"></i>
+              Short term prioritizes safety & instant access; Long term harnesses compounding growth.
+            </div>
+
+          </div>
+
+          <!-- Right: Dynamic Results Card -->
+          <div class="calc-results-card">
+            
+            <div class="rec-banner">
+              <span class="rec-badge-tag" id="calcRecBadge">⚖️ Steady Growth (1 - 3 Years)</span>
+              <h3 class="rec-name" id="calcRecName">Post Office Schemes / RD</h3>
+              <p class="rec-reason" id="calcRecReason">
+                For medium-term milestones, Post Office Time Deposits (7.1% - 7.5%) and Bank FDs provide guaranteed sovereign safety and compound growth without market crashes.
+              </p>
+            </div>
+
+            <div class="results-table-retro">
+              <div class="result-row">
+                <span class="result-label">Initial Principal:</span>
+                <span class="result-val" id="calcPrincipalVal">₹10,000</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Projected Rate / Tenure:</span>
+                <span class="result-val" id="calcRateVal">7.5% p.a. (3 Years)</span>
+              </div>
+              <div class="result-row" style="background: var(--accent-green-light);">
+                <span class="result-label" style="color: var(--accent-green-dark); font-weight: 700;">Estimated Interest Earned:</span>
+                <span class="result-val" style="color: var(--accent-green-dark);" id="calcInterestVal">+ ₹2,423</span>
+              </div>
+              <div class="result-row total">
+                <span class="result-label" style="font-family: var(--font-display); font-size: 1rem; color: var(--text-black);">Estimated Total Maturity:</span>
+                <span class="result-val" id="calcTotalVal">₹12,423</span>
+              </div>
+            </div>
+
+            <!-- Compound Interest Tip -->
+            <div class="compound-insight-box">
+              <div class="compound-title">
+                <span>✨</span> The Magic of Compound Interest
+              </div>
+              <p style="margin: 0; font-size: 0.82rem; color: var(--text-black);">
+                Albert Einstein called compound interest the <strong>8th wonder of the world</strong>. When your interest earns interest, your money grows exponentially over time!
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. 3 GOLDEN RULES FOR BEGINNERS
+         ========================================================================== -->
+    <section class="section" id="tips" style="background: var(--card-white);">
+      <div class="container">
+        
+        <div class="section-header-retro">
+          <span class="badge-pill badge-green">Smart Habits</span>
+          <h2 class="section-title-retro">3 Golden Rules for Beginners</h2>
+          <p class="section-subtitle-retro">
+            Follow these timeless financial principles before making your first investment.
+          </p>
+        </div>
+
+        <div class="rules-grid">
+          
+          <!-- Rule 1 -->
+          <div class="rule-card">
+            <div class="rule-num-badge">1</div>
+            <h3 class="rule-title">Build an Emergency Fund First</h3>
+            <p class="rule-desc">
+              Before investing in long-term options like Equity or PPF, save <strong>3 to 6 months of living expenses</strong> in a liquid Savings Account or Liquid Mutual Fund so you never have to break investments during emergencies.
+            </p>
+          </div>
+
+          <!-- Rule 2 -->
+          <div class="rule-card">
+            <div class="rule-num-badge">2</div>
+            <h3 class="rule-title">Understand the Lock-in Period</h3>
+            <p class="rule-desc">
+              Never lock money in PPF (15 years) or multi-year Fixed Deposits if you will need cash in the next few months. Match each financial goal with the correct investment timeline.
+            </p>
+          </div>
+
+          <!-- Rule 3 -->
+          <div class="rule-card">
+            <div class="rule-num-badge">3</div>
+            <h3 class="rule-title">Start Small, Stay Consistent</h3>
+            <p class="rule-desc">
+              You don't need lakhs to begin. A monthly recurring deposit (RD) or mutual fund SIP of even <strong>₹500/month</strong> started today beats waiting years to accumulate a large lump sum.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. FREQUENTLY ASKED QUESTIONS (ACCORDION)
+         ========================================================================== -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        
+        <div class="section-header-retro">
+          <span class="badge-pill badge-pink">Quick Answers</span>
+          <h2 class="section-title-retro">Frequently Asked Questions</h2>
+          <p class="section-subtitle-retro">
+            Common questions beginners ask when starting their savings and investing journey.
+          </p>
+        </div>
+
+        <div class="faq-accordion">
+          
+          <div class="faq-item-retro active">
+            <button type="button" class="faq-btn-retro">
+              <span>Is my money in bank Fixed Deposits safe?</span>
+              <span class="faq-toggle-icon"><i class="bi bi-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer-retro">
+              Yes. All scheduled commercial banks in India are insured by the <strong>DICGC (Deposit Insurance and Credit Guarantee Corporation)</strong>, a subsidiary of the Reserve Bank of India, up to ₹5,00,000 per depositor per bank (including principal and interest).
+            </div>
+          </div>
+
+          <div class="faq-item-retro">
+            <button type="button" class="faq-btn-retro">
+              <span>What is the difference between Saving and Investing?</span>
+              <span class="faq-toggle-icon"><i class="bi bi-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer-retro">
+              <strong>Saving</strong> focuses on capital preservation and instant liquidity for short-term needs (Savings Accounts, FDs, Liquid Funds). <strong>Investing</strong> involves putting money into assets like Mutual Funds or Stocks with the goal of earning higher long-term returns that beat inflation.
+            </div>
+          </div>
+
+          <div class="faq-item-retro">
+            <button type="button" class="faq-btn-retro">
+              <span>How much money do I need to start a Mutual Fund SIP?</span>
+              <span class="faq-toggle-icon"><i class="bi bi-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer-retro">
+              Most mutual fund houses in India allow you to start a Systematic Investment Plan (SIP) with as little as <strong>₹500 per month</strong> (some even start at ₹100). Consistency is far more important than the starting amount!
+            </div>
+          </div>
+
+          <div class="faq-item-retro">
+            <button type="button" class="faq-btn-retro">
+              <span>Why should I invest in PPF if it has a 15-year lock-in?</span>
+              <span class="faq-toggle-icon"><i class="bi bi-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer-retro">
+              PPF is one of the very few instruments in India with <strong>EEE tax status</strong>: your initial investment (up to ₹1.5 Lakh/year under 80C), the annual interest earned, and the final maturity amount are all 100% tax-free with sovereign government backing.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       7. PLAYFUL RETRO FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
       
-      // 2. Reset time horizon to default (short)
-      horizonSelect.value = 'short';
-      
-      // 3. Hide the results section completely
-      resultsContainer.style.display = 'none';
-      resultsGrid.innerHTML = '';
-      
-      // 4. Smooth scroll back to the calculator input area
-      document.getElementById('calculator').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  </script>
+      <div class="footer-grid">
+        
+        <!-- Brand Summary -->
+        <div class="footer-brand">
+          <a href="#hero" class="brand-logo" style="color: #FFFFFF;">
+            <span class="brand-icon-coin">🪙</span>
+            <span>Smart<span class="brand-tag">Saver</span></span>
+          </a>
+          <p>
+            An educational financial literacy guide built to empower beginners in India to save wisely, understand investment instruments, and build long-term wealth with zero complexity.
+          </p>
+          <div style="display: flex; gap: 0.75rem;">
+            <span class="badge-pill badge-yellow">100% Free</span>
+            <span class="badge-pill badge-green">Educational Tool</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#what-is-saving">What is Saving?</a></li>
+            <li><a href="#options">7 Instruments</a></li>
+            <li><a href="#calculator">ROI Calculator</a></li>
+            <li><a href="#tips">3 Golden Rules</a></li>
+            <li><a href="#faq">FAQs</a></li>
+          </ul>
+        </div>
+
+        <!-- Instruments -->
+        <div>
+          <h4 class="footer-title">Instruments</h4>
+          <ul class="footer-links">
+            <li><a href="#options">Savings Account</a></li>
+            <li><a href="#options">Fixed Deposit (FD)</a></li>
+            <li><a href="#options">Recurring Deposit (RD)</a></li>
+            <li><a href="#options">Liquid Mutual Funds</a></li>
+            <li><a href="#options">Public Provident Fund (PPF)</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div>© 2026 SmartSaver • Built with ❤️ for Smart Indian Savers.</div>
+        <div>Educational purposes only. Consult a SEBI registered advisor for personal investment advice.</div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
 </body>
-
 </html>

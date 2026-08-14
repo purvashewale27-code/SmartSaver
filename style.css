@@ -1,0 +1,1217 @@
+/* ==========================================================================
+   SMARTSAVER — MASTER STYLESHEET
+   Neo-Brutalist & Retro-Modern Financial Education Design System
+   Copied & Adapted from Black Social (blackorg)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* Signature Black Social Color Palette */
+  --bg-peach: #FFF4E8;
+  --bg-peach-light: #FFF9F2;
+  --bg-peach-alt: #FDE8D4;
+
+  --accent-orange: #FF7B00;
+  --accent-orange-hover: #E66F00;
+  --accent-orange-light: #FFEAD8;
+
+  --accent-pink: #FFAEC5;
+  --accent-pink-dark: #F5729B;
+  --accent-pink-light: #FFEFF4;
+
+  --accent-green: #90E0AA;
+  --accent-green-dark: #2D8A4E;
+  --accent-green-light: #ECFDF5;
+
+  --accent-yellow: #FFDD67;
+  --accent-yellow-light: #FEF9C3;
+
+  --accent-blue: #A2D2FF;
+  --accent-blue-dark: #0284C7;
+  --accent-blue-light: #E0F2FE;
+
+  --accent-purple: #D8B4FE;
+  --accent-purple-light: #F3E8FF;
+
+  /* Neutrals */
+  --text-black: #121212;
+  --text-muted: #5A544F;
+  --border-dark: #121212;
+  --card-white: #FFFFFF;
+
+  /* Typography */
+  --font-display: 'Paytone One', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+  /* Neo-Brutalist Hard Borders & Shadows */
+  --border-thick: 2.5px solid var(--border-dark);
+  --border-medium: 2px solid var(--border-dark);
+  --border-thin: 1.5px solid var(--border-dark);
+
+  --shadow-retro-sm: 3px 3px 0px var(--border-dark);
+  --shadow-retro: 5px 5px 0px var(--border-dark);
+  --shadow-retro-lg: 8px 8px 0px var(--border-dark);
+  --shadow-retro-hover: 7px 7px 0px var(--border-dark);
+
+  --radius-pill: 9999px;
+  --radius-card: 24px;
+  --radius-arch: 120px 120px 24px 24px;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-black);
+  background-color: var(--bg-peach);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ==========================================================================
+   1. STICKY NEO-BRUTALIST NAVBAR
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-peach-light);
+  border-bottom: var(--border-thick);
+  padding: 0.85rem 0;
+  transition: all 0.2s ease;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  color: var(--text-black);
+  text-decoration: none;
+}
+
+.brand-icon-coin {
+  width: 38px;
+  height: 38px;
+  background: var(--accent-yellow);
+  border: var(--border-medium);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 2px 2px 0px var(--border-dark);
+}
+
+.brand-tag {
+  color: var(--accent-orange);
+}
+
+.nav-links-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.nav-link-btn {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text-black);
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-link-btn:hover {
+  background: var(--accent-pink-light);
+  border-color: var(--border-dark);
+  box-shadow: 2px 2px 0px var(--border-dark);
+  transform: translate(-1px, -1px);
+}
+
+.header-cta-btn {
+  background: var(--accent-orange);
+  color: var(--text-black) !important;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  padding: 0.55rem 1.35rem;
+  border-radius: var(--radius-pill);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-retro-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-cta-btn:hover {
+  background: var(--accent-orange-hover);
+  color: #FFFFFF !important;
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-retro);
+}
+
+.header-cta-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--border-dark);
+}
+
+.mobile-nav-toggle {
+  display: none;
+  background: var(--card-white);
+  border: var(--border-thick);
+  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  box-shadow: var(--shadow-retro-sm);
+  cursor: pointer;
+}
+
+/* Mobile Drawer */
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 66px;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 66px);
+  background: var(--bg-peach);
+  border-top: var(--border-thick);
+  z-index: 999;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+}
+
+.mobile-drawer.open {
+  display: flex;
+}
+
+.mobile-drawer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.mobile-drawer-item {
+  background: var(--card-white);
+  border: var(--border-thick);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--text-black);
+  box-shadow: var(--shadow-retro-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* ==========================================================================
+   2. BUTTONS & UI PRIMITIVES
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-pill);
+  border: var(--border-thick);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  box-shadow: var(--shadow-retro);
+}
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-retro-hover);
+}
+
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px var(--border-dark);
+}
+
+.btn-orange {
+  background-color: var(--accent-orange);
+  color: var(--text-black);
+}
+
+.btn-orange:hover {
+  background-color: var(--accent-orange-hover);
+  color: #FFFFFF;
+}
+
+.btn-pink {
+  background-color: var(--accent-pink);
+  color: var(--text-black);
+}
+
+.btn-pink:hover {
+  background-color: var(--accent-pink-dark);
+  color: #FFFFFF;
+}
+
+.btn-green {
+  background-color: var(--accent-green);
+  color: var(--text-black);
+}
+
+.btn-green:hover {
+  background-color: var(--accent-green-dark);
+  color: #FFFFFF;
+}
+
+.btn-white {
+  background-color: var(--card-white);
+  color: var(--text-black);
+}
+
+.btn-white:hover {
+  background-color: var(--bg-peach-alt);
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-pill);
+  border: var(--border-medium);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-retro-sm);
+  background: var(--card-white);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-orange { background: var(--accent-orange-light); color: var(--text-black); }
+.badge-pink { background: var(--accent-pink-light); color: var(--text-black); }
+.badge-green { background: var(--accent-green-light); color: var(--accent-green-dark); }
+.badge-yellow { background: var(--accent-yellow-light); color: #B45309; }
+.badge-blue { background: var(--accent-blue-light); color: var(--accent-blue-dark); }
+
+/* ==========================================================================
+   3. HERO SECTION
+   ========================================================================== */
+.hero-section {
+  min-height: calc(100vh - 68px);
+  display: flex;
+  align-items: center;
+  padding: 2.5rem 0 3rem;
+  background: var(--bg-peach);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-highlight-text {
+  color: var(--accent-orange);
+  display: block;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: 3.25rem;
+  line-height: 1.12;
+  color: var(--text-black);
+  margin: 1.25rem 0;
+  letter-spacing: -0.02em;
+}
+
+.highlight-box-old {
+  background: var(--accent-orange-light);
+  color: var(--accent-orange);
+  padding: 0.1rem 0.6rem;
+  border-radius: 12px;
+  border: var(--border-medium);
+  display: inline-block;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+
+.hero-stats-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+
+.stat-box-retro {
+  background: var(--card-white);
+  border: var(--border-thick);
+  border-radius: 16px;
+  padding: 1.1rem 1rem;
+  box-shadow: var(--shadow-retro-sm);
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.stat-box-retro:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-retro);
+}
+
+.stat-num-retro {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  color: var(--text-black);
+  line-height: 1.1;
+  margin-bottom: 0.2rem;
+}
+
+.stat-num-retro.orange { color: var(--accent-orange); }
+.stat-num-retro.green { color: var(--accent-green-dark); }
+.stat-num-retro.blue { color: var(--accent-blue-dark); }
+
+.stat-label-retro {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.hero-actions-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Feature Spotlight Card (Right Column) */
+.hero-feature-card {
+  background: var(--card-white);
+  border: var(--border-thick);
+  border-radius: var(--radius-card);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-retro-lg);
+  position: relative;
+}
+
+.feature-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.feature-coin-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--accent-yellow);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-retro-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.feature-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--text-black);
+  line-height: 1.2;
+}
+
+.feature-def-box {
+  background: var(--bg-peach-light);
+  border: var(--border-medium);
+  border-radius: 14px;
+  padding: 1.15rem;
+  font-size: 0.95rem;
+  color: var(--text-black);
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+
+.feature-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.feature-check-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-black);
+}
+
+.check-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  border: var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--text-black);
+  flex-shrink: 0;
+  box-shadow: 2px 2px 0px var(--border-dark);
+}
+
+/* ==========================================================================
+   4. INSTRUMENTS & OPTIONS SECTION (7 CARDS GRID)
+   ========================================================================== */
+.section {
+  padding: 5rem 0;
+}
+
+.section-header-retro {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3rem;
+}
+
+.section-title-retro {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--text-black);
+  line-height: 1.2;
+  margin: 0.75rem 0 0.85rem;
+}
+
+.section-subtitle-retro {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
+
+/* Filter Strip */
+.filter-tabs-strip {
+  display: flex;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-bottom: 2.75rem;
+  flex-wrap: wrap;
+}
+
+.filter-tab-pill {
+  background: var(--card-white);
+  border: var(--border-thick);
+  border-radius: var(--radius-pill);
+  padding: 0.55rem 1.25rem;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--text-black);
+  cursor: pointer;
+  box-shadow: var(--shadow-retro-sm);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.filter-tab-pill:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-retro);
+  background: var(--bg-peach-light);
+}
+
+.filter-tab-pill.active {
+  background: var(--accent-orange);
+  color: var(--text-black);
+  box-shadow: var(--shadow-retro);
+  transform: translate(-1px, -1px);
+}
+
+/* Instruments Grid */
+.instruments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.instrument-card {
+  background: var(--card-white);
+  border: var(--border-thick);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-retro);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.instrument-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-retro-lg);
+}
+
+.instrument-card-header {
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.instrument-card.theme-blue .instrument-card-header { background: var(--accent-blue-light); }
+.instrument-card.theme-orange .instrument-card-header { background: var(--accent-orange-light); }
+.instrument-card.theme-yellow .instrument-card-header { background: var(--accent-yellow-light); }
+.instrument-card.theme-pink .instrument-card-header { background: var(--accent-pink-light); }
+.instrument-card.theme-green .instrument-card-header { background: var(--accent-green-light); }
+.instrument-card.theme-purple .instrument-card-header { background: var(--accent-purple-light); }
+
+.instrument-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--card-white);
+  border: var(--border-medium);
+  box-shadow: var(--shadow-retro-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.instrument-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.instrument-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--text-black);
+  margin-bottom: 0.5rem;
+}
+
+.instrument-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.instrument-metrics-box {
+  background: var(--bg-peach-light);
+  border: var(--border-medium);
+  border-radius: 14px;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.metric-val {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-black);
+}
+
+.metric-val.roi {
+  color: var(--accent-green-dark);
+}
+
+.instrument-tags-row {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   5. INTERACTIVE CALCULATOR & RECOMMENDATION ENGINE
+   ========================================================================== */
+.calculator-section {
+  background: var(--bg-peach-light);
+  border-top: var(--border-thick);
+  border-bottom: var(--border-thick);
+  padding: 5rem 0;
+}
+
+.calculator-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3.5rem;
+  align-items: flex-start;
+}
+
+.calc-interactive-card {
+  background: var(--card-white);
+  border: var(--border-thick);
+  border-radius: var(--radius-card);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-retro-lg);
+}
+
+.calc-step-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.calc-step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-orange);
+  border: var(--border-medium);
+  box-shadow: 2px 2px 0px var(--border-dark);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-black);
+}
+
+.calc-step-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--text-black);
+}
+
+.amount-pills-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.amount-pill-btn {
+  background: var(--bg-peach-light);
+  border: var(--border-medium);
+  border-radius: 12px;
+  padding: 0.65rem 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-black);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.amount-pill-btn:hover {
+  background: var(--accent-yellow-light);
+  border-color: var(--border-dark);
+  transform: translate(-1px, -1px);
+}
+
+.amount-pill-btn.active {
+  background: var(--accent-orange);
+  color: var(--text-black);
+  box-shadow: var(--shadow-retro-sm);
+  transform: translate(-1px, -1px);
+}
+
+.custom-input-wrap {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.currency-icon {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--text-black);
+}
+
+.custom-num-input {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 2.75rem;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-black);
+  background: var(--bg-peach-light);
+  border: var(--border-thick);
+  border-radius: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.custom-num-input:focus {
+  background: var(--card-white);
+  box-shadow: 0 0 0 3px var(--accent-orange-light);
+}
+
+/* Time Horizon Options */
+.horizon-options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.horizon-radio-card {
+  background: var(--bg-peach-light);
+  border: var(--border-thick);
+  border-radius: 16px;
+  padding: 1rem 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.horizon-radio-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-retro-sm);
+}
+
+.horizon-radio-card.active {
+  background: var(--accent-green-light);
+  border-color: var(--border-dark);
+  box-shadow: var(--shadow-retro-sm);
+  transform: translate(-1px, -1px);
+}
+
+.horizon-name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-black);
+  margin-bottom: 0.25rem;
+}
+
+.horizon-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Calculator Results Card */
+.calc-results-card {
+  background: var(--card-white);
+  border: var(--border-thick);
+  border-radius: var(--radius-card);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-retro-lg);
+  position: sticky;
+  top: 90px;
+}
+
+.rec-banner {
+  background: var(--accent-yellow-light);
+  border: var(--border-medium);
+  border-radius: 16px;
+  padding: 1.15rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-retro-sm);
+}
+
+.rec-badge-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #B45309;
+  text-transform: uppercase;
+}
+
+.rec-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--text-black);
+  margin: 0.25rem 0;
+}
+
+.rec-reason {
+  font-size: 0.88rem;
+  color: var(--text-black);
+  line-height: 1.45;
+}
+
+.results-table-retro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 0.85rem;
+  background: var(--bg-peach-light);
+  border: var(--border-thin);
+  border-radius: 10px;
+}
+
+.result-label {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.result-val {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-black);
+}
+
+.result-row.total {
+  background: var(--accent-green-light);
+  border: var(--border-medium);
+}
+
+.result-row.total .result-val {
+  font-size: 1.35rem;
+  color: var(--accent-green-dark);
+}
+
+/* Compound Insight Box */
+.compound-insight-box {
+  background: var(--accent-blue-light);
+  border: var(--border-medium);
+  border-radius: 14px;
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: var(--text-black);
+  line-height: 1.5;
+}
+
+.compound-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ==========================================================================
+   6. 3 GOLDEN RULES SECTION
+   ========================================================================== */
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.rule-card {
+  background: var(--card-white);
+  border: var(--border-thick);
+  border-radius: var(--radius-card);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-retro);
+  transition: all 0.25s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.rule-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-retro-lg);
+}
+
+.rule-num-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: var(--border-medium);
+  box-shadow: var(--shadow-retro-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.rule-card:nth-child(1) .rule-num-badge { background: var(--accent-pink); }
+.rule-card:nth-child(2) .rule-num-badge { background: var(--accent-yellow); }
+.rule-card:nth-child(3) .rule-num-badge { background: var(--accent-green); }
+
+.rule-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--text-black);
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+
+.rule-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   7. FAQ ACCORDION SECTION
+   ========================================================================== */
+.faq-section {
+  padding: 5rem 0;
+  background: var(--bg-peach-light);
+  border-top: var(--border-thick);
+}
+
+.faq-accordion {
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.faq-item-retro {
+  background: var(--card-white);
+  border: var(--border-thick);
+  border-radius: 18px;
+  box-shadow: var(--shadow-retro-sm);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.faq-item-retro.active {
+  box-shadow: var(--shadow-retro);
+  transform: translate(-2px, -2px);
+}
+
+.faq-btn-retro {
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  background: none;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--text-black);
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-toggle-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-peach);
+  border: var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.faq-item-retro.active .faq-toggle-icon {
+  transform: rotate(180deg);
+  background: var(--accent-orange);
+}
+
+.faq-answer-retro {
+  padding: 0 1.5rem 1.35rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  border-top: var(--border-thin);
+  padding-top: 1rem;
+  display: none;
+}
+
+.faq-item-retro.active .faq-answer-retro {
+  display: block;
+}
+
+/* ==========================================================================
+   8. PLAYFUL RETRO FOOTER
+   ========================================================================== */
+.site-footer {
+  background: var(--text-black);
+  color: var(--bg-peach);
+  border-top: var(--border-thick);
+  padding: 4.5rem 0 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.footer-brand p {
+  color: #A8A29E;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 1rem 0 1.5rem;
+  max-width: 440px;
+}
+
+.footer-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--accent-yellow);
+  margin-bottom: 1.25rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links a {
+  color: #D6D3D1;
+  font-size: 0.92rem;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent-orange);
+}
+
+.footer-bottom-bar {
+  border-top: 1px solid #292524;
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: #A8A29E;
+}
+
+/* ==========================================================================
+   9. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .instruments-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .calculator-grid {
+    grid-template-columns: 1fr;
+  }
+  .calc-results-card {
+    position: static;
+  }
+  .rules-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links-menu, .header-cta-btn {
+    display: none;
+  }
+  .mobile-nav-toggle {
+    display: flex;
+  }
+  .hero-title {
+    font-size: 2.35rem;
+  }
+  .instruments-grid {
+    grid-template-columns: 1fr;
+  }
+  .amount-pills-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .horizon-options-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
