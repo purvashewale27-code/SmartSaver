@@ -1,6 +1,7 @@
 // ==========================================================================
 // SMARTSAVER — MASTER INTERACTION CONTROLLER
 // Neo-Brutalist Client-Side Interactivity & Financial Calculator
+// Mobile-Optimized Touch Handlers & Drawer Navigation
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,11 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (icon) {
         icon.className = isOpen ? 'bi bi-x-lg' : 'bi bi-list';
       }
+      // Prevent body scroll when drawer is open
+      document.body.style.overflow = isOpen ? 'hidden' : '';
     });
 
+    // Close drawer when any internal link or button inside is clicked
     mobileDrawer.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileDrawer.classList.remove('open');
+        document.body.style.overflow = '';
         const icon = mobileToggle.querySelector('i');
         if (icon) icon.className = 'bi bi-list';
       });
@@ -78,13 +83,13 @@ document.addEventListener('DOMContentLoaded', () => {
       years = 1;
       rate = 7.0; // Fixed Deposit or Liquid Fund
       recName = 'Fixed Deposit (FD) / Liquid Fund';
-      recBadge = '🛡️ Safe & Liquid (< 1 Year)';
+      recBadge = '⚡ Safe & Liquid (< 1 Year)';
       recReason = 'For short-term needs, capital protection and immediate access matter most. Banks offer 6.5% - 7.5% guaranteed returns with zero stock market volatility.';
     } else if (selectedHorizon === 'medium') {
       years = 3;
       rate = 7.5; // Post Office / Recurring Deposit
       recName = 'Post Office Schemes / RD';
-      recBadge = '⚖️ Steady Growth (1 - 3 Years)';
+      recBadge = '🎯 Steady Growth (1 - 3 Years)';
       recReason = 'For medium-term milestones, Post Office Time Deposits (7.1% - 7.5%) and Bank FDs provide guaranteed sovereign safety and compound growth without market crashes.';
     } else {
       years = 5;
